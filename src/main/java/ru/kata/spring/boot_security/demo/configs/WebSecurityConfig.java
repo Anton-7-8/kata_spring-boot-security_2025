@@ -8,12 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import ru.kata.spring.boot_security.demo.service.UserDetailsServiceImp;
 
 /**
  * Класс конфигурации безопасности Spring Security.
@@ -25,6 +24,7 @@ public class WebSecurityConfig {
     // Логгер для отслеживания конфигурации безопасности.
     private static final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
     private final SuccessUserHandler successUserHandler;
+    private final UserDetailsServiceImp userDetailsServiceImp;
 
     /**
      * Конструктор для инъекции зависимостей.
@@ -33,9 +33,10 @@ public class WebSecurityConfig {
      * @param userDetailsServiceImp Сервис для загрузки данных пользователя.
      */
     @Autowired
-    public WebSecurityConfig(SuccessUserHandler successUserHandler) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserDetailsServiceImp userDetailsServiceImp) {
         logger.info("Инициализация WebSecurityConfig");
         this.successUserHandler = successUserHandler;
+        this.userDetailsServiceImp = userDetailsServiceImp;
     }
     /**
      * Бин для цепочки фильтров безопасности.
