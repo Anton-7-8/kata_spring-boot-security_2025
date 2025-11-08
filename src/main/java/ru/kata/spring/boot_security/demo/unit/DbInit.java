@@ -18,6 +18,7 @@ import java.util.HashSet;
  */
 @Component
 public class DbInit {
+
     // Логгер для отслеживания операций инициализации.
     private static final Logger logger = LoggerFactory.getLogger(DbInit.class);
 
@@ -31,6 +32,7 @@ public class DbInit {
      */
     @Autowired
     public DbInit(UserService userService, RoleService roleService) {
+        logger.info("Инициализация DbInit");
         this.userService = userService;
         this.roleService = roleService;
     }
@@ -56,7 +58,7 @@ public class DbInit {
 
         User admin = new User();
         admin.setName("admin");
-        admin.setLastname("admin");
+        admin.setLastName("admin");
         admin.setRole(roleAdmin);
         admin.setAge(30);
         admin.setEmail("admin@mail.ru");
@@ -66,7 +68,7 @@ public class DbInit {
 
         User user = new User();
         user.setName("user");
-        user.setLastname("user");
+        user.setLastName("user");
         user.setRole(roleUser);
         user.setAge(20);
         user.setEmail("user@mail.ru");

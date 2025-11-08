@@ -42,7 +42,6 @@ public class AdminController {
      * @param roleService Сервис для работы с ролями.
      * @param userService Сервис для работы с пользователями.
      */
-
     @Autowired
     public AdminController(PersonValidator personValidator, RoleService roleService, UserService userService) {
         this.personValidator = personValidator;
@@ -72,6 +71,7 @@ public class AdminController {
      * @param bindingResult Результаты валидации.
      * @return Перенаправление на страницу пользователей или возврат формы при ошибке.
      */
+    @PostMapping("/addNewUser")
     public String addNewUser(@ModelAttribute("person") @Valid User user, BindingResult bindingResult) {
         logger.info("Попытка добавления нового пользователя: {}", user.getEmail());
         personValidator.validate(user, bindingResult);

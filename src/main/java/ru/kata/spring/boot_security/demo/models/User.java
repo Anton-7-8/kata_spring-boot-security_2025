@@ -43,7 +43,7 @@ public class User implements UserDetails {
     private String name;
 
     @Column(name = "last_name")
-    private String lastname;
+    private String lastName;
 
     @Column(name = "age")
     @Min(value = 0, message = "Возраст должен быть больше 0")
